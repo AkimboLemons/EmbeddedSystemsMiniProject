@@ -23,6 +23,9 @@ void delayMS(uint16_t ms);
 #define D2 eS_PORTC3
 #define D3 eS_PORTC4
 
+//Define LED placeholder for laser?
+#define LED es_PORTB7
+
 //File import required after defining pins
 #include "lcd.h"
 
@@ -47,6 +50,22 @@ const char *status_text[STATUS_COUNT][2] = {
 void lcd_setup(void);
 void show_status(status_t s);
 
+//LED states
+typedef enum {
+	off = 0,
+	on  = 1
+} led_state_t;
+
+//Turn the LED on pin 13 (PB5) on or off
+void led(led_state_t state)
+{
+	DDRB |= (1 << PB5);            // make sure PB5 is an output
+
+	if (state == on)
+	PORTB |=  (1 << PB5);      // LED on
+	else
+	PORTB &= ~(1 << PB5);      //LED off
+}
 
 void lcd_setup(void)
 {
