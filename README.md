@@ -1,1 +1,1 @@
-# EmbeddedSystemsMiniProject
+# Embedded Systems Mini Project
