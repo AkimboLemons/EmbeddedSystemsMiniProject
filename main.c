@@ -117,6 +117,19 @@ int main(void)
 	while (1) {
 		OCR1A = 1000 + ((uint32_t)adc_read(0) * 4000) / 1023;  // Pot A0 determines servo D9 position
 		OCR1B = 1000 + ((uint32_t)adc_read(1) * 4000) / 1023;  // Pot A1 determines servo D10 position
+		/*
+		if mode = manual
+			OCR1A = 1000 + ((uint32_t)adc_read(0) * 4000) / 1023;  // Pot A0 determines servo D9 position
+			OCR1B = 1000 + ((uint32_t)adc_read(1) * 4000) / 1023;  // Pot A1 determines servo D10 position
+			send status message on angles of turret
+		else mode = auto
+			while no object <50cm
+				sway OCR1A between 1000 and 4000
+				send status message finding target
+			send status target found
+			fire
+			send status target eliminated
+		*/
 	}
 }
 
